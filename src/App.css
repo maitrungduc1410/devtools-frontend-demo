@@ -1,0 +1,95 @@
+/* Utility classes for GridResizer */
+.group:hover .group-hover\\:bg-slate-200 {
+  background-color: rgb(226 232 240);
+}
+
+.h-1 { height: 0.25rem; }
+.w-1 { width: 0.25rem; }
+.w-3 { width: 0.75rem; }
+.h-3 { height: 0.75rem; }
+
+.rounded-full { border-radius: 9999px; }
+
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.flex-row { flex-direction: row; }
+
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+
+.gap-2 { gap: 0.5rem; }
+
+.fixed { position: fixed; }
+.inset-0 { inset: 0; }
+
+.z-10 { z-index: 10; }
+
+.cursor-col-resize { cursor: col-resize; }
+.cursor-row-resize { cursor: row-resize; }
+
+.border-l-2 { border-left-width: 2px; }
+.border-r-2 { border-right-width: 2px; }
+.border-t-2 { border-top-width: 2px; }
+.border-b-2 { border-bottom-width: 2px; }
+
+.border-slate-200 { border-color: rgb(226 232 240); }
+
+.bg-slate-50 { background-color: rgb(248 250 252); }
+.bg-slate-200 { background-color: rgb(226 232 240); }
+.bg-slate-300 { background-color: rgb(203 213 225); }
+.bg-slate-800 { background-color: rgb(30 41 59); }
+.bg-blue-500 { background-color: rgb(59 130 246); }
+
+.hover\\:bg-blue-500:hover { background-color: rgb(59 130 246); }
+
+.hidden { display: none; }
+
+/* Dark mode utilities */
+@media (prefers-color-scheme: dark) {
+  .dark\\:bg-slate-800 { background-color: rgb(30 41 59); }
+  .dark\\:bg-slate-200 { background-color: rgb(226 232 240); }
+  .dark\\:bg-blue-500 { background-color: rgb(59 130 246); }
+  .dark\\:bg-white { background-color: rgb(255 255 255); }
+  .dark\\:border-neutral-800 { border-color: rgb(38 38 38); }
+  .dark\\:hover\\:bg-blue-500:hover { background-color: rgb(59 130 246); }
+}
+
+.dark .dark\\:bg-slate-800 { background-color: rgb(30 41 59); }
+.dark .dark\\:bg-slate-200 { background-color: rgb(226 232 240); }
+.dark .dark\\:bg-blue-500 { background-color: rgb(59 130 246); }
+.dark .dark\\:bg-white { background-color: rgb(255 255 255); }
+.dark .dark\\:border-neutral-800 { border-color: rgb(38 38 38); }
+.dark .dark\\:hover\\:bg-blue-500:hover { background-color: rgb(59 130 246); }
+
+/* App theme classes */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  background-color: #f5f5f5;
+  transition: background-color 0.2s ease;
+}
+
+.dark .app-container {
+  background-color: #2d2d2d;
+}
+
+.transpiled-container {
+  background-color: #f0f0f0;
+  transition: background-color 0.2s ease;
+}
+
+.dark .transpiled-container {
+  background-color: #1e1e1e;
+}
+
+iframe[data-theme-target] {
+  background-color: white;
+  transition: background-color 0.2s ease;
+}
+
+.dark iframe[data-theme-target="preview"] {
+  background-color: #1a1a1a;
+}
