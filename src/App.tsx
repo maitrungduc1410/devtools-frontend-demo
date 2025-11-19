@@ -235,6 +235,7 @@ interface PreviewProps {
   code: string;
   reloadSignal: boolean;
   isDark: boolean;
+  onIframeLoaded: () => void;
 }
 
 const Preview: React.FC<PreviewProps> = memo(({
@@ -242,6 +243,7 @@ const Preview: React.FC<PreviewProps> = memo(({
   code,
   reloadSignal,
   isDark,
+  onIframeLoaded,
 }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [isIframeReady, setIsIframeReady] = useState(false);
@@ -287,6 +289,7 @@ const Preview: React.FC<PreviewProps> = memo(({
 
   const handleIframeLoad = useCallback(() => {
     setIsIframeReady(true);
+    onIframeLoaded()
 
     // Notify DevTools that preview is loaded
     if (iframeRef.current?.contentWindow) {
@@ -305,7 +308,7 @@ const Preview: React.FC<PreviewProps> = memo(({
         isDark
       );
     }
-  }, [code, isDark]);
+  }, [code, isDark, onIframeLoaded]);
 
   return (
     <div style={{ width: "100%", height: "100%", position: "relative" }}>
@@ -333,7 +336,7 @@ function App() {
     const saved = localStorage.getItem("darkMode");
     return saved !== null ? saved === "true" : false;
   });
-  const [devtools, setDevtools] = useState(true);
+  const [devtools, setDevtools] = useState(false);
   const [reloadSignal, setReloadSignal] = useState(false);
   const [activeTab, setActiveTab] = useState<'preview' | 'transpiled'>('preview');
 
@@ -424,7 +427,7 @@ root.render(<HelloWorld />);`);
       // Forward messages between preview and devtools
       const previewIframe = previewRef.current?.querySelector("iframe");
       const devtoolsIframe = devtoolsRef.current?.querySelector("iframe");
-
+      console.log("Parent received message:", event.data);
       if (
         event.source === previewIframe?.contentWindow &&
         devtoolsIframe?.contentWindow
@@ -600,6 +603,7 @@ root.render(<HelloWorld />);`);
                   code={code}
                   reloadSignal={reloadSignal}
                   isDark={isDark}
+                  onIframeLoaded={() => setDevtools(true)}
                 />
               ) : (
                 <CodeEditor
